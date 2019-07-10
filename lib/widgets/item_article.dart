@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:wan_wandroid/model/article_model.dart';
-import 'package:wan_wandroid/page/WebPage.dart';
+import 'package:wan_wandroid/page/web_page.dart';
 
 class ItemArticle extends StatefulWidget {
   final ArticleEntity articleEntity;
@@ -17,16 +17,16 @@ class ItemArticleState extends State<ItemArticle> {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return Container(
-      color: Colors.white,
-      child: GestureDetector(
+    return GestureDetector(
+      child: Container(
+        color: Colors.white,
         child: Column(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[_author(), _info(), _bottom()],
         ),
-        onTap: _toWebPage,
-      )
+      ),
+      onTap: _toWebPage,
     );
   }
 
@@ -64,7 +64,7 @@ class ItemArticleState extends State<ItemArticle> {
           Expanded(
               child: Row(children: <Widget>[
             widget.articleTag != null
-                ? Text("${widget.articleTag}·",
+                ? Text("${widget.articleTag} · ",
                     style: TextStyle(color: Colors.red[400], fontSize: 12.0))
                 : Text(""),
             Text(
@@ -82,7 +82,7 @@ class ItemArticleState extends State<ItemArticle> {
         child: Row(children: <Widget>[
           Expanded(
             child: Row(children: [
-              new Text("${widget.articleEntity.superChapterName}*",
+              new Text("${widget.articleEntity.superChapterName} · ",
                   style: new TextStyle(color: Colors.black54, fontSize: 12.0)),
               new Text(
                 widget.articleEntity.chapterName,
@@ -93,9 +93,10 @@ class ItemArticleState extends State<ItemArticle> {
         ]));
   }
 
-  void _toWebPage(){
-    Navigator.of(context).push(MaterialPageRoute(builder: (context){
-      return WebPage(widget.articleEntity.title,widget.articleEntity.link);
+  void _toWebPage() {
+    Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+      return WebPage(
+          title: widget.articleEntity.title, url: widget.articleEntity.link);
     }));
   }
 }

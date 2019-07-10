@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'Home.dart';
-import 'System.dart';
+import 'home_page.dart';
+import 'system_page.dart';
 
 class MainPage extends StatefulWidget {
   @override
@@ -14,10 +14,10 @@ class MainPageState extends State<MainPage>
   int _selectIndex = 0;
 
   final List<Widget> _tabList = <Widget>[
-    new Home(),
-    new System(),
-    new Home(),
-    new System()
+    new HomePage(),
+    new SystemPage(),
+    new HomePage(),
+    new SystemPage()
   ];
 
   PageController _pageController;

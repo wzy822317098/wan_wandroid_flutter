@@ -3,6 +3,7 @@ import 'Api.dart';
 import 'package:wan_wandroid/model/article_model.dart';
 import 'package:wan_wandroid/model/articles_model.dart';
 import 'package:wan_wandroid/model/banner_entity.dart';
+import 'package:wan_wandroid/model/hot_key_model.dart';
 
 class NetworkUtils {
   static const baseUrl = "https://www.wanandroid.com";
@@ -51,4 +52,10 @@ class NetworkUtils {
     });
   }
 
+  //获取热搜词汇
+  Future<List<HotKeyEntity>> getHotKey() async{
+    return await dio.get(Api.hotkey).then((response){
+      return HotKeyModel.fromJson(response.data).data;
+    });
+  }
 }

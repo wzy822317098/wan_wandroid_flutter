@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
-class System extends StatefulWidget{
+class SystemPage extends StatefulWidget{
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
-    return SystemState();
+    return SystemPageState();
   }
   
 }
 
-class SystemState extends State<System> {
+class SystemPageState extends State<SystemPage> {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build

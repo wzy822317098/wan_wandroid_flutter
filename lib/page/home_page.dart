@@ -5,16 +5,18 @@ import 'package:wan_wandroid/model/banner_entity.dart';
 import 'package:wan_wandroid/model/article_model.dart';
 import 'package:wan_wandroid/widgets/item_article.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:wan_wandroid/page/WebPage.dart';
+import 'package:wan_wandroid/page/web_page.dart';
+import 'package:flutter_page_indicator/flutter_page_indicator.dart';
+import 'package:wan_wandroid/page/search_page.dart';
 
-class Home extends StatefulWidget {
+class HomePage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return HomeState();
+    return HomePageState();
   }
 }
 
-class HomeState extends State<Home> {
+class HomePageState extends State<HomePage> {
   List<BannerEntity> _bannerList;
   List<ArticleEntity> _topArticle;
   List<ArticleEntity> _articles = List();
@@ -26,7 +28,6 @@ class HomeState extends State<Home> {
       new GlobalKey<RefreshFooterState>();
   bool _loadMore = false;
   int _currentPage = 0;
-  int _totalCount =0;
 
   void _initData(){
     NetworkUtils.instance.getBanner().then((it) {
@@ -49,7 +50,7 @@ class HomeState extends State<Home> {
                   Icons.search,
                   color: Colors.black,
                 ),
-                onPressed: null)
+                onPressed: _toSearch)
           ],
         ),
         body: Center(
@@ -140,7 +141,10 @@ class HomeState extends State<Home> {
                 );
               },
               itemCount: _bannerList.length,
-              pagination: new SwiperPagination(),
+              pagination: new SwiperPagination(
+                builder: DotSwiperPaginationBuilder(color: Colors.blueGrey,activeColor: Colors.blueAccent)
+              ),
+              indicatorLayout: PageIndicatorLayout.SCALE,
               onTap: _onSwiperTapped,
             ),
           )
@@ -167,7 +171,13 @@ class HomeState extends State<Home> {
 
   void _onSwiperTapped(int index) {
     Navigator.of(context).push(MaterialPageRoute(builder: (context){
-      return WebPage(_bannerList[index].title,_bannerList[index].url);
+      return WebPage(title:_bannerList[index].title,url:_bannerList[index].url);
+    }));
+  }
+
+  void _toSearch(){
+    Navigator.of(context).push(MaterialPageRoute(builder: (context){
+      return SearchPage();
     }));
   }
 }
