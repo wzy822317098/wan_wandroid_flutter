@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:wan_wandroid/model/article_model.dart';
 import 'package:wan_wandroid/page/web_page.dart';
+import 'package:wan_wandroid/utils/colors_utils.dart';
 
 class ItemArticle extends StatefulWidget {
   final ArticleEntity articleEntity;
@@ -18,13 +19,17 @@ class ItemArticleState extends State<ItemArticle> {
   Widget build(BuildContext context) {
     // TODO: implement build
     return GestureDetector(
-      child: Container(
-        color: Colors.white,
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: <Widget>[_author(), _info(), _bottom()],
-        ),
+      child:
+      Container(
+        color: ColorsUtils.color_bg,
+        child:Card(
+          child:Column(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[_author(), _info(), _bottom()],
+          ),
+        )
+
       ),
       onTap: _toWebPage,
     );
@@ -48,8 +53,7 @@ class ItemArticleState extends State<ItemArticle> {
             child: Text(
               widget.articleEntity.title,
               textAlign: TextAlign.start,
-//              overflow: TextOverflow.visible,
-              style: TextStyle(color: Colors.black87, fontSize: 14.0),
+              style: TextStyle(color: ColorsUtils.color_title, fontSize: 14.0),
             ),
           )
         ],
@@ -69,7 +73,7 @@ class ItemArticleState extends State<ItemArticle> {
                 : Text(""),
             Text(
               widget.articleEntity.author,
-              style: TextStyle(fontSize: 12.0, color: Colors.black54),
+              style: TextStyle(fontSize: 12.0, color: ColorsUtils.color_content),
             )
           ])),
           Text(widget.articleEntity.niceDate)
@@ -83,10 +87,10 @@ class ItemArticleState extends State<ItemArticle> {
           Expanded(
             child: Row(children: [
               new Text("${widget.articleEntity.superChapterName} · ",
-                  style: new TextStyle(color: Colors.black54, fontSize: 12.0)),
+                  style: new TextStyle(color: ColorsUtils.color_content, fontSize: 12.0)),
               new Text(
                 widget.articleEntity.chapterName,
-                style: TextStyle(fontSize: 12.0, color: Colors.black54),
+                style: TextStyle(fontSize: 12.0, color:ColorsUtils.color_content),
               )
             ]),
           )

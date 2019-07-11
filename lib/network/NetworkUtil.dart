@@ -10,7 +10,7 @@ class NetworkUtils {
 
   factory NetworkUtils() => _getInstance();
 
-  static NetworkUtils get instance=>_getInstance();
+  static NetworkUtils get instance => _getInstance();
 
   static NetworkUtils _instance;
 
@@ -28,34 +28,46 @@ class NetworkUtils {
     dio.options.baseUrl = baseUrl;
     dio.options.connectTimeout = 90000;
     dio.options.receiveTimeout = 90000;
-    dio.options.responseType =ResponseType.json;
+    dio.options.responseType = ResponseType.json;
+    dio.interceptors.add(LogInterceptor(responseBody: true,requestBody: true));
   }
 
   //获取轮播信息
   Future<List<BannerEntity>> getBanner() async {
-    return await dio.get(Api.banner).then((response){
+    return await dio.get(Api.banner).then((response) {
       return HttpBannerEntity.fromJson(response.data).data;
     });
   }
 
   //获取置顶文章
-  Future<List<ArticleEntity>> getTopArtics() async{
-    return await dio.get(Api.topArticle).then((response){
+  Future<List<ArticleEntity>> getTopArtics() async {
+    return await dio.get(Api.topArticle).then((response) {
       return ArticleModel.fromJson(response.data).data;
     });
   }
 
   //分页获取文章列表
-  Future<ArticlesModelData> getArticles(int pageNum) async{
-    return await dio.get(Api.pageArticles+"$pageNum/json").then((response){
+  Future<ArticlesModelData> getArticles(int pageNum) async {
+    return await dio.get(Api.pageArticles + "$pageNum/json").then((response) {
       return ArticlesModel.fromJson(response.data).data;
     });
   }
 
   //获取热搜词汇
-  Future<List<HotKeyEntity>> getHotKey() async{
-    return await dio.get(Api.hotkey).then((response){
+  Future<List<HotKeyEntity>> getHotKey() async {
+    return await dio.get(Api.hotkey).then((response) {
       return HotKeyModel.fromJson(response.data).data;
+    });
+  }
+
+  //搜索
+  Future<ArticlesModelData> search(int pageNum, String key) async {
+    FormData params =FormData.from({
+      "k": key
+    });
+    return await dio
+        .post(Api.search + "$pageNum/json", data: params).then((response) {
+      return ArticlesModel.fromJson(response.data).data;
     });
   }
 }

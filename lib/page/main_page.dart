@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'home_page.dart';
 import 'system_page.dart';
+import 'package:wan_wandroid/utils/colors_utils.dart';
 
 class MainPage extends StatefulWidget {
   @override
@@ -39,15 +40,16 @@ class MainPageState extends State<MainPage>
             return _tabList[index];
           }),
       bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Colors.white,
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.home), title: Text('首页')),
-          BottomNavigationBarItem(icon: Icon(Icons.book), title: Text('体系')),
+          BottomNavigationBarItem(icon: Icon(Icons.bookmark_border), title: Text('体系')),
           BottomNavigationBarItem(
-              icon: Icon(Icons.message), title: Text('公众号')),
-          BottomNavigationBarItem(icon: Icon(Icons.receipt), title: Text('项目'))
+              icon: Icon(Icons.chat_bubble_outline), title: Text('公众号')),
+          BottomNavigationBarItem(icon: Icon(Icons.folder_open), title: Text('项目'))
         ],
-        fixedColor: Colors.black,
-        unselectedItemColor: Colors.blueGrey[300],
+        fixedColor: ColorsUtils.color_title,
+        unselectedItemColor: ColorsUtils.color_content,
         currentIndex: _selectIndex,
         onTap: _onItemTapped,
         showUnselectedLabels: true,
