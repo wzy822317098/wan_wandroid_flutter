@@ -66,40 +66,6 @@ class DialogUtils {
                 return Future.value(canCancel);
               },
             )
-//        builder: (BuildContext context) {
-//          return
-//          AlertDialog(
-//            title: Text(title),
-//            content: Text(msg),
-//            actions: <Widget>[
-//              negativeStr != null
-//                  ? GestureDetector(
-//                      child: Container(
-//                        padding: const EdgeInsets.all(10),
-//                        child: Text(
-//                          negativeStr,
-//                          style: TextStyle(color: Colors.grey),
-//                        ),
-//                      ),
-//                      onTap: () {
-//                        Navigator.pop(context);
-//                        negativeListener();
-//                      },
-//                    )
-//                  : Container(),
-//              positiveStr != null
-//                  ? GestureDetector(
-//                child:Container(
-//                  padding: const EdgeInsets.all(10),
-//                  child: Text(positiveStr,style: TextStyle(
-//                    color: Colors.black
-//                  ),),
-//                ),
-//                onTap: (){Navigator.pop(context);
-//                positiveListener();},
-//              ) : Container()
-//            ],
         );
-//        });
   }
 }

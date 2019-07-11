@@ -16,6 +16,13 @@ class MyApp extends StatelessWidget {
 //          primarySwatch: Colors.blue,
           dividerColor: ColorsUtils.color_bg,
           disabledColor: Colors.white,
+          accentColor: ColorsUtils.color_title,
+          textTheme: TextTheme(
+            title: TextStyle(
+              fontSize: 16,
+              color: ColorsUtils.color_title
+            )
+          ),
           cursorColor:ColorsUtils.color_content,
           bottomAppBarColor: Colors.white,
           iconTheme: IconThemeData(

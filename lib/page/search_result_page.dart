@@ -33,6 +33,7 @@ class SearchResultState extends State<SearchResultPage> {
             widget._searchKey,
             style: TextStyle(
               fontSize: 16,
+              color: ColorsUtils.color_title
             ),
           ),
         ),
