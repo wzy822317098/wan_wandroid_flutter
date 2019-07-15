@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:wan_wandroid/network/NetworkUtil.dart';
+import 'package:wan_wandroid/network/network_utils.dart';
 import 'package:wan_wandroid/utils/shared_preferences_utils.dart';
 import 'package:wan_wandroid/utils/dialog_utils.dart';
 import 'package:wan_wandroid/page/search_result_page.dart';
 import 'package:wan_wandroid/utils/colors_utils.dart';
-
+///@description 搜索页面，展示搜索热词，历史记录
+///
+///@created by wangzhouyao on 2019-07-10
 class SearchPage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => SearchState();
@@ -115,7 +117,7 @@ class SearchState extends State<SearchPage> {
                       );
                     },
                     separatorBuilder: (BuildContext context, int index) =>
-                        Divider(height: 8,),
+                        Divider(height: 8,color: Colors.grey[300],),
                     itemCount: _searchKeyHistory.length)
                 : Container(),
           )
@@ -130,8 +132,10 @@ class SearchState extends State<SearchPage> {
         data.forEach((it) {
           _hotKeyWidgets.add(GestureDetector(
             child: Container(
-              padding: EdgeInsets.all(8),
-              color: Colors.grey[300],
+              padding: EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                  color: Colors.grey[300],
+                  borderRadius: BorderRadius.all(Radius.circular(5))),
               child: Text(it.name),
             ),
             onTap: () {
@@ -191,18 +195,11 @@ class SearchState extends State<SearchPage> {
       SharedPreferencsUtils.getInstance().saveStringToList(
           SharedPreferencsUtils.KEY_SEARCH_KEY_HISTORY, _controller.text,
           limit: 5);
+      _getSearchKeyHistory();
       Navigator.of(context).push(MaterialPageRoute(
           builder: (context){
 
         return SearchResultPage(_controller.text);}));
-//      showDialog(
-//          context: context,
-//          builder: (BuildContext context) {
-//            return AlertDialog(
-//              title: Text("搜索"),
-//              content: Text(_controller.text),
-//            );
-//          });
     });
   }
 }

@@ -1,5 +1,7 @@
 import 'package:shared_preferences/shared_preferences.dart';
-
+///@description 缓存工具类
+///
+///@created by wangzhouyao on 2019-07-10
 class SharedPreferencsUtils {
   static const KEY_SEARCH_KEY_HISTORY = 'key_search_key_history';
 

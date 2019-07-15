@@ -3,6 +3,9 @@ import 'home_page.dart';
 import 'system_page.dart';
 import 'package:wan_wandroid/utils/colors_utils.dart';
 
+///@description 承载首页4个tab的主页
+///
+///@created by wangzhouyao on 2019-07-10
 class MainPage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {

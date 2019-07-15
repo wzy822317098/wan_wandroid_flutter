@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:wan_wandroid/utils/colors_utils.dart';
 
+///@description web页面展示工具
+///
+///@created by wangzhouyao on 2019-07-10
 class WebPage extends StatefulWidget {
   final String title;
   final String url;
@@ -16,7 +19,6 @@ class WebPageState extends State<WebPage> {
   bool loading = true;
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return WillPopScope(
       child: Scaffold(
         appBar: AppBar(

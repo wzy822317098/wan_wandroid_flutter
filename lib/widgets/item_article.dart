@@ -3,6 +3,9 @@ import 'package:wan_wandroid/model/article_model.dart';
 import 'package:wan_wandroid/page/web_page.dart';
 import 'package:wan_wandroid/utils/colors_utils.dart';
 
+///@description 文章item组件
+///
+///@created by wangzhouyao on 2019-07-10
 class ItemArticle extends StatefulWidget {
   final ArticleEntity articleEntity;
   final String articleTag;
@@ -17,20 +20,16 @@ class ItemArticle extends StatefulWidget {
 class ItemArticleState extends State<ItemArticle> {
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return GestureDetector(
-      child:
-      Container(
-        color: ColorsUtils.color_bg,
-        child:Card(
-          child:Column(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[_author(), _info(), _bottom()],
-          ),
-        )
-
-      ),
+      child: Container(
+          color: ColorsUtils.color_bg,
+          child: Card(
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[_author(), _info(), _bottom()],
+            ),
+          )),
       onTap: _toWebPage,
     );
   }
@@ -40,19 +39,24 @@ class ItemArticleState extends State<ItemArticle> {
       padding: const EdgeInsets.only(left: 8.0, right: 8.0),
       width: double.infinity,
       child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           widget.articleEntity.envelopePic != ""
-              ? Image.network(
-                  widget.articleEntity.envelopePic,
-                  width: 80,
-                  height: 60,
-                  fit: BoxFit.cover,
-                )
+              ? Container(
+            margin: EdgeInsets.only(right: 8),
+            child: Image.network(
+
+              widget.articleEntity.envelopePic,
+              width: 80,
+              height: 60,
+              fit: BoxFit.cover,
+            ),
+          )
               : Container(),
           Expanded(
             child: Text(
               widget.articleEntity.title,
-              textAlign: TextAlign.start,
+              textAlign: TextAlign.left,
               style: TextStyle(color: ColorsUtils.color_title, fontSize: 14.0),
             ),
           )
@@ -73,7 +77,8 @@ class ItemArticleState extends State<ItemArticle> {
                 : Text(""),
             Text(
               widget.articleEntity.author,
-              style: TextStyle(fontSize: 12.0, color: ColorsUtils.color_content),
+              style:
+                  TextStyle(fontSize: 12.0, color: ColorsUtils.color_content),
             )
           ])),
           Text(widget.articleEntity.niceDate)
@@ -87,10 +92,12 @@ class ItemArticleState extends State<ItemArticle> {
           Expanded(
             child: Row(children: [
               new Text("${widget.articleEntity.superChapterName} · ",
-                  style: new TextStyle(color: ColorsUtils.color_content, fontSize: 12.0)),
+                  style: new TextStyle(
+                      color: ColorsUtils.color_content, fontSize: 12.0)),
               new Text(
                 widget.articleEntity.chapterName,
-                style: TextStyle(fontSize: 12.0, color:ColorsUtils.color_content),
+                style:
+                    TextStyle(fontSize: 12.0, color: ColorsUtils.color_content),
               )
             ]),
           )

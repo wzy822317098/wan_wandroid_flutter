@@ -25,9 +25,7 @@ class MyApp extends StatelessWidget {
           ),
           cursorColor:ColorsUtils.color_content,
           bottomAppBarColor: Colors.white,
-          iconTheme: IconThemeData(
-            color: Colors.teal
-          ),
+
           dialogTheme: DialogTheme(
               backgroundColor: Colors.white,
               titleTextStyle: TextStyle(fontSize: 16,color: ColorsUtils.color_title),

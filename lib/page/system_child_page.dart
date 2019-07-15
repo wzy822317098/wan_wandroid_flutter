@@ -1,80 +1,84 @@
 import 'package:flutter/material.dart';
-import 'package:wan_wandroid/network/network_utils.dart';
-import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:wan_wandroid/widgets/item_article.dart';
-import 'package:wan_wandroid/model/article_model.dart';
-import 'package:wan_wandroid/utils/refresh_utils.dart';
 import 'package:wan_wandroid/utils/colors_utils.dart';
+import 'package:wan_wandroid/model/system_model.dart';
+import 'package:wan_wandroid/model/article_model.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:wan_wandroid/utils/refresh_utils.dart';
+import 'package:wan_wandroid/widgets/item_article.dart';
+import 'package:wan_wandroid/network/network_utils.dart';
 
-///@description 搜索结果页面
+///@description
 ///
-///@created by wangzhouyao on 2019-07-11
-class SearchResultPage extends StatefulWidget {
-  final String _searchKey;
-  SearchResultPage(this._searchKey);
+///@created by wangzhouyao on 2019-07-15
+class SystemChildPage extends StatefulWidget {
+  final SystemModelEntity _entity;
+  const SystemChildPage(this._entity);
   @override
-  State<StatefulWidget> createState() => SearchResultState();
+  State<StatefulWidget> createState() => SystemChildPageState();
 }
 
-class SearchResultState extends State<SearchResultPage> {
-  final List<ArticleEntity> _rsList = List();
+class SystemChildPageState extends State<SystemChildPage> {
+  final List<ArticleEntity> _articleList = List();
   int _currentPage = 0;
   GlobalKey<EasyRefreshState> _easyRefreshKey =
       new GlobalKey<EasyRefreshState>();
   GlobalKey<RefreshHeaderState> _headerKey =
-  new GlobalKey<RefreshHeaderState>();
+      new GlobalKey<RefreshHeaderState>();
   GlobalKey<RefreshFooterState> _footerKey =
-  new GlobalKey<RefreshFooterState>();
+      new GlobalKey<RefreshFooterState>();
   bool _loadMore = false;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ColorsUtils.color_bg,
+        backgroundColor: ColorsUtils.color_bg,
         appBar: AppBar(
-          leading: BackButton(
-            color: ColorsUtils.color_title,
-          ),
-          title: Text(
-            widget._searchKey,
-            style: TextStyle(fontSize: 16, color: ColorsUtils.color_title),
-          ),
-        ),
+            title: Text(
+          widget._entity.name,
+          style: TextStyle(color: ColorsUtils.color_title, fontSize: 16),
+        )),
         body: Center(
           child: EasyRefresh(
             key: _easyRefreshKey,
             autoControl: false,
+//            emptyWidget: RefreshUtils.getEmptyWidget(),
             refreshHeader: RefreshUtils.getHeader(_headerKey),
             refreshFooter: RefreshUtils.getFooter(_footerKey),
             firstRefresh: true,
             child: ListView(
-              semanticChildCount: _rsList.length,
+              semanticChildCount: _articleList.length,
               children: <Widget>[
                 Container(
-                  margin: EdgeInsets.only(top: 8),
-                  child: _rsList != null
+                  child: _articleList != null
                       ? ListView.separated(
                           shrinkWrap: true,
                           physics: NeverScrollableScrollPhysics(),
                           itemBuilder: (BuildContext contenxt, int index) {
-                            return ItemArticle(articleEntity: _rsList[index]);
+                            return ItemArticle(articleEntity: _articleList[index]);
                           },
                           separatorBuilder: (BuildContext context, int index) =>
                               Divider(height: 0,),
-                          itemCount: _rsList.length)
+                          itemCount: _articleList.length)
                       : Container(),
                 ),
               ],
             ),
             onRefresh: () async {
               _currentPage = 0;
-              _rsList.clear();
-              _doSearch(_currentPage);
+              _articleList.clear();
+              _doLoadArticles(_currentPage);
             },
             loadMore: () async {
               // ignore: unnecessary_statements
               _currentPage += 1;
               if (_loadMore) {
-                _doSearch(_currentPage);
+                _doLoadArticles(_currentPage);
               } else {
                 setState(() {
                   _easyRefreshKey.currentState.callLoadMoreFinish();
@@ -86,9 +90,11 @@ class SearchResultState extends State<SearchResultPage> {
         ));
   }
 
-  void _doSearch(int page) {
-    NetworkUtils.instance.search(page, widget._searchKey).then((it) {
-      _rsList.addAll(it.datas);
+  void _doLoadArticles(int page) {
+    NetworkUtils.instance
+        .getArticlesByCid(page, widget._entity.id)
+        .then((data) {
+      _articleList.addAll(data.datas);
       setState(() {
         if (page == 0) {
           _easyRefreshKey.currentState.callRefreshFinish();
@@ -96,7 +102,7 @@ class SearchResultState extends State<SearchResultPage> {
           _easyRefreshKey.currentState.callLoadMoreFinish();
         }
         _easyRefreshKey.currentState.waitState(() {
-          if (it.pageCount <= _currentPage + 1) {
+          if (data.pageCount <= _currentPage + 1) {
             _loadMore = false;
           } else {
             _loadMore = true;
