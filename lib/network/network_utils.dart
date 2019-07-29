@@ -5,6 +5,7 @@ import 'package:wan_wandroid/model/articles_model.dart';
 import 'package:wan_wandroid/model/banner_entity.dart';
 import 'package:wan_wandroid/model/hot_key_model.dart';
 import 'package:wan_wandroid/model/system_model.dart';
+import 'package:wan_wandroid/model/project_category_model.dart';
 ///@description 网络请求工具
 ///
 ///@created by wangzhouyao on 2019-07-10
@@ -95,6 +96,27 @@ class NetworkUtils {
   Future<SystemModel> getWechatPubAcct() async{
     return await _dio.get(Api.wechatPubAcct).then((response){
       return SystemModel.fromJson(response.data);
+    });
+  }
+  
+  Future<ArticlesModelData> getWxArticles(int pageMun,int cid) async{
+    return await _dio.get(Api.wxArticles+"$cid/$pageMun/json").then((response){
+      return ArticlesModel.fromJson(response.data).data;
+    });
+  }
+
+  //获取项目分类
+  Future<ProjectCategoryModel> getProjectCategory() async{
+    return await _dio.get(Api.projectCategory).then((response){
+      return ProjectCategoryModel.fromJson(response.data);
+    });
+  }
+  
+  Future<ArticlesModelData> getProjectArticles(int pageNum,int cid) async{
+    Map<String,dynamic> _params =new Map();
+    _params["cid"] =cid;
+    return await _dio.get(Api.projectArticles+"$pageNum/json",queryParameters: _params).then((response){
+      return ArticlesModel.fromJson(response.data).data;
     });
   }
 }

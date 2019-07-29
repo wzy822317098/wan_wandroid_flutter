@@ -7,7 +7,7 @@ import 'package:wan_wandroid/page/system_child_page.dart';
 ///
 ///@created by wangzhouyao on 2019-07-15
 class ItemSystem extends StatefulWidget {
-  final SystemModelEntity _systemModelEntity;
+  final SystemEntity _systemModelEntity;
   const ItemSystem(this._systemModelEntity);
   @override
   State<StatefulWidget> createState() => ItemSystemState();
@@ -17,7 +17,6 @@ class ItemSystemState extends State<ItemSystem> {
   List<Widget> _categoryWidges = List();
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _getWigets();
   }
@@ -70,7 +69,7 @@ class ItemSystemState extends State<ItemSystem> {
     });
   }
 
-  void _toSystemChild(SystemModelEntity entity){
+  void _toSystemChild(SystemEntity entity){
     Navigator.of(context).push(MaterialPageRoute(builder: (context){
       return SystemChildPage(entity);
     }));

@@ -1,18 +1,19 @@
-class SystemModel {
-	List<SystemEntity> data;
+class ProjectCategoryModel {
+	List<ProjectCategoryEntity> data;
 	int errorCode;
 	String errorMsg;
 
-	SystemModel({this.data, this.errorCode, this.errorMsg});
+	ProjectCategoryModel({this.data, this.errorCode, this.errorMsg});
 
-	factory SystemModel.fromJson(Map<String, dynamic> json) => SystemModel(
-			data: (json['data'] as List)
-					?.map((e) => e == null
-					? null
-					: SystemEntity.fromJson(e as Map<String, dynamic>))
-					?.toList(),
-			errorCode: json['errorCode'] as int,
-			errorMsg: json['errorMsg'] as String);
+	factory ProjectCategoryModel.fromJson(Map<String, dynamic> json) =>ProjectCategoryModel(
+		data: (json['data'] as List)
+				?.map((e) => e == null
+				? null
+				: ProjectCategoryEntity.fromJson(e as Map<String, dynamic>))
+				?.toList(),
+		errorCode :json['errorCode'],
+		errorMsg : json['errorMsg']
+	);
 
 	Map<String, dynamic> toJson() {
 		final Map<String, dynamic> data = new Map<String, dynamic>();
@@ -25,9 +26,9 @@ class SystemModel {
 	}
 }
 
-class SystemEntity {
+class ProjectCategoryEntity {
 	int visible;
-	List<SystemEntity> children;
+	List<ProjectCategoryEntity> children;
 	String name;
 	bool userControlSetTop;
 	int id;
@@ -35,15 +36,16 @@ class SystemEntity {
 	int parentChapterId;
 	int order;
 
-	SystemEntity({this.visible, this.children, this.name, this.userControlSetTop, this.id, this.courseId, this.parentChapterId, this.order});
+	ProjectCategoryEntity({this.visible, this.children, this.name, this.userControlSetTop, this.id, this.courseId, this.parentChapterId, this.order});
 
-	SystemEntity.fromJson(Map<String, dynamic> json)  {
+	ProjectCategoryEntity.fromJson(Map<String, dynamic> json) {
 		visible = json['visible'];
 		children=(json['children'] as List)
 				?.map((e) => e == null
 				? null
-				: SystemEntity.fromJson(e as Map<String, dynamic>))
+				: ProjectCategoryEntity.fromJson(e as Map<String, dynamic>))
 				?.toList();
+		name = json['name'];
 		name = json['name'];
 		userControlSetTop = json['userControlSetTop'];
 		id = json['id'];

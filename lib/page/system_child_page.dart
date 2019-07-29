@@ -11,7 +11,7 @@ import 'package:wan_wandroid/network/network_utils.dart';
 ///
 ///@created by wangzhouyao on 2019-07-15
 class SystemChildPage extends StatefulWidget {
-  final SystemModelEntity _entity;
+  final SystemEntity _entity;
   const SystemChildPage(this._entity);
   @override
   State<StatefulWidget> createState() => SystemChildPageState();
@@ -30,7 +30,6 @@ class SystemChildPageState extends State<SystemChildPage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
   }
 

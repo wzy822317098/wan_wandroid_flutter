@@ -16,7 +16,7 @@ class SystemPage extends StatefulWidget{
 }
 
 class SystemPageState extends State<SystemPage> with AutomaticKeepAliveClientMixin {
-  List<SystemModelEntity> _systemList;
+  List<SystemEntity> _systemList;
   @override
   void initState() {
     super.initState();

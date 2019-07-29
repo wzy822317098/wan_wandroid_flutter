@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-///@description
+///@description 网络加载loading
 ///
 ///@created by wangzhouyao on 2019-07-16
 class DialogLoading extends StatefulWidget {

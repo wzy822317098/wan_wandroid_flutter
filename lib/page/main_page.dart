@@ -3,6 +3,7 @@ import 'home_page.dart';
 import 'system_page.dart';
 import 'wechat_pubacct_page.dart';
 import 'package:wan_wandroid/utils/colors_utils.dart';
+import 'project_page.dart';
 
 ///@description 承载首页4个tab的主页
 ///
@@ -22,7 +23,7 @@ class MainPageState extends State<MainPage>
     new HomePage(),
     new SystemPage(),
     new WechatPubAcctPage(),
-    new SystemPage()
+    new ProjectPage()
   ];
 
   PageController _pageController;

@@ -17,7 +17,6 @@ class WechatPubAcctPageState extends State<WechatPubAcctPage>
   TabController _controller;
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
 
     NetworkUtils.instance.getWechatPubAcct().then((data) {

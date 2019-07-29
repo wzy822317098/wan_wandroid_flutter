@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:wan_wandroid/model/system_model.dart';
 import 'package:wan_wandroid/model/article_model.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:wan_wandroid/network/network_utils.dart';
 import 'package:wan_wandroid/utils/refresh_utils.dart';
+import 'package:wan_wandroid/model/project_category_model.dart';
 import 'item_article.dart';
 ///@description 微信公众号
 ///
 ///@created by wangzhouyao on 2019-07-16
-class FragWechatArticles extends StatefulWidget{
-  final SystemEntity _entity;
+class FragProjectArticles extends StatefulWidget{
+  final ProjectCategoryEntity _entity;
 
-  const FragWechatArticles(this._entity);
+  const FragProjectArticles(this._entity);
 
   @override
-  State<StatefulWidget> createState() =>FragWechatArticlesState();
+  State<StatefulWidget> createState() =>FragProjectArticlesState();
 }
 
-class FragWechatArticlesState extends State<FragWechatArticles> with AutomaticKeepAliveClientMixin{
+class FragProjectArticlesState extends State<FragProjectArticles> with AutomaticKeepAliveClientMixin{
   final List<ArticleEntity> _articleList = List();
   int _currentPage = 0;
   GlobalKey<EasyRefreshState> _easyRefreshKey =
@@ -78,7 +78,7 @@ class FragWechatArticlesState extends State<FragWechatArticles> with AutomaticKe
   }
   void _doLoadArticles(int page) {
     NetworkUtils.instance
-        .getWxArticles(page, widget._entity.id)
+        .getProjectArticles(page, widget._entity.id)
         .then((data) {
       _articleList.addAll(data.datas);
       setState(() {

@@ -14,5 +14,11 @@ class Api {
 
   static const tree = "/tree/json"; //体系
 
-  static const wechatPubAcct ="/wxarticle/chapters/json";//
+  static const wechatPubAcct ="/wxarticle/chapters/json";//微信公众号
+
+  static const wxArticles ="/wxarticle/list/";//微信公众号历史文章
+
+  static const projectCategory ="/project/tree/json";//项目分类
+
+static const projectArticles ="/project/list/";//项目列表数据
 }
