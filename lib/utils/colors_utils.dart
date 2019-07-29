@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 
 class ColorsUtils {
   //APP背景色
-  static const color_bg = Color(0xFFF5F5F5);
+  static const color_bg = Colors.white;
 
   //标题类文字颜色
   static const color_title = Color(0xDD000000);

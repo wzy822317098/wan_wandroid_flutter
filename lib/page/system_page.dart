@@ -15,7 +15,7 @@ class SystemPage extends StatefulWidget{
   
 }
 
-class SystemPageState extends State<SystemPage> {
+class SystemPageState extends State<SystemPage> with AutomaticKeepAliveClientMixin {
   List<SystemModelEntity> _systemList;
   @override
   void initState() {
@@ -40,5 +40,8 @@ class SystemPageState extends State<SystemPage> {
           Divider(height: 0,), itemCount: _systemList.length):Container(),
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
   
 }

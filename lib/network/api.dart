@@ -13,4 +13,6 @@ class Api {
   static const search = "/article/query/"; //搜索
 
   static const tree = "/tree/json"; //体系
+
+  static const wechatPubAcct ="/wxarticle/chapters/json";//
 }

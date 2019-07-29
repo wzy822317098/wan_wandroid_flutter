@@ -14,7 +14,10 @@ class MyApp extends StatelessWidget {
       theme: new ThemeData(
           primaryColor: Colors.white,
 //          primarySwatch: Colors.blue,
-          dividerColor: ColorsUtils.color_bg,
+          dividerColor: Colors.white,
+          tabBarTheme: TabBarTheme(labelStyle: TextStyle(
+            fontSize: 14,color: ColorsUtils.color_title
+          )),
           disabledColor: Colors.white,
           accentColor: ColorsUtils.color_title,
           textTheme: TextTheme(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'home_page.dart';
 import 'system_page.dart';
+import 'wechat_pubacct_page.dart';
 import 'package:wan_wandroid/utils/colors_utils.dart';
 
 ///@description 承载首页4个tab的主页
@@ -20,7 +21,7 @@ class MainPageState extends State<MainPage>
   final List<Widget> _tabList = <Widget>[
     new HomePage(),
     new SystemPage(),
-    new HomePage(),
+    new WechatPubAcctPage(),
     new SystemPage()
   ];
 
@@ -34,8 +35,8 @@ class MainPageState extends State<MainPage>
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      body: new PageView.builder(
+    return Scaffold(
+      body:PageView.builder(
           onPageChanged: _onItemTapped,
           controller: _pageController,
           itemCount: _tabList.length,

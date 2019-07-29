@@ -46,7 +46,7 @@ class DialogUtils {
                       : Container(),
                   positiveStr != null
                       ? GestureDetector(
-                    behavior: HitTestBehavior.opaque,
+                          behavior: HitTestBehavior.opaque,
                           child: Container(
                             padding: const EdgeInsets.all(8),
                             child: Text(
@@ -65,7 +65,6 @@ class DialogUtils {
               onWillPop: () async {
                 return Future.value(canCancel);
               },
-            )
-        );
+            ));
   }
 }

@@ -21,7 +21,7 @@ class HomePage extends StatefulWidget {
   }
 }
 
-class HomePageState extends State<HomePage> {
+class HomePageState extends State<HomePage>  with AutomaticKeepAliveClientMixin{
   List<BannerEntity> _bannerList;
   List<ArticleEntity> _topArticle;
   List<ArticleEntity> _articles = List();
@@ -33,6 +33,10 @@ class HomePageState extends State<HomePage> {
       new GlobalKey<RefreshFooterState>();
   bool _loadMore = false;
   int _currentPage = 0;
+@override
+  void initState() {
+    super.initState();
+  }
 
   void _initData() {
     NetworkUtils.instance.getBanner().then((it) {
@@ -183,4 +187,7 @@ class HomePageState extends State<HomePage> {
       return SearchPage();
     }));
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }

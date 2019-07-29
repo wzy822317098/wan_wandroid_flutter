@@ -90,4 +90,11 @@ class NetworkUtils {
       return ArticlesModel.fromJson(response.data).data;
     });
   }
+
+  //获取公众号列表
+  Future<SystemModel> getWechatPubAcct() async{
+    return await _dio.get(Api.wechatPubAcct).then((response){
+      return SystemModel.fromJson(response.data);
+    });
+  }
 }

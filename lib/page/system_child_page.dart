@@ -55,6 +55,7 @@ class SystemChildPageState extends State<SystemChildPage> {
               semanticChildCount: _articleList.length,
               children: <Widget>[
                 Container(
+                  margin: EdgeInsets.only(top: 8),
                   child: _articleList != null
                       ? ListView.separated(
                           shrinkWrap: true,

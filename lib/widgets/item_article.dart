@@ -22,8 +22,10 @@ class ItemArticleState extends State<ItemArticle> {
   Widget build(BuildContext context) {
     return GestureDetector(
       child: Container(
+        padding: EdgeInsets.only(left: 4,right: 4),
           color: ColorsUtils.color_bg,
           child: Card(
+            margin: const EdgeInsets.all(8),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -36,14 +38,14 @@ class ItemArticleState extends State<ItemArticle> {
 
   Widget _info() {
     return Container(
-      padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+      padding: const EdgeInsets.only(left: 10, right: 10),
       width: double.infinity,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           widget.articleEntity.envelopePic != ""
               ? Container(
-            margin: EdgeInsets.only(right: 8),
+            margin: EdgeInsets.only(right: 10),
             child: Image.network(
 
               widget.articleEntity.envelopePic,
@@ -87,7 +89,7 @@ class ItemArticleState extends State<ItemArticle> {
 
   Widget _bottom() {
     return Container(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(10),
         child: Row(children: <Widget>[
           Expanded(
             child: Row(children: [
